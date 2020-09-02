@@ -6,14 +6,11 @@
 body {
   color: white;
   background-color: black;
- .today h3 {color: #DB35B0;}
-}
- 
 }
 </style>
 <body>
 <div>Duży lotek:
- <p id='dldl' id="Wednesday"></p>
+ <p id='dldl' class="Wednesday"></p>
  <p id='dln'></p>
  </div>
 
@@ -55,10 +52,10 @@ document.getElementById("ejn").innerHTML = JSON.stringify(data.EJ.numerki, ',', 
  document.getElementById("ejx").innerHTML = JSON.stringify(data.EJ.extra, ',', '\t').replace(/,/g, ' ');  
     });
 
- var day = (new Date()).getDay()-1;
- var daysOfTheWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+var day = (new Date()).getDay()-1;
+var daysOfTheWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-$("#" + daysOfTheWeek[day]).addClass("today");
+$("#" + daysOfTheWeek[day]).css("color", '#DB35B0');
 
 </script>
                     
