@@ -7,6 +7,11 @@
 body {
   color: white;
   background-color: black;
+ 
+ p.green {
+  color: green;
+}
+ 
 }
 </style>
 <body>
@@ -59,7 +64,11 @@ document.getElementById("ejn").innerHTML = JSON.stringify(data.EJ.numerki, ',', 
     });
  
 
-document.getElementById("test").innerHTML = Date.today()
+if (JSON.stringify(data.MM1.data_losowania) < Date.today())
+{
+ document.getElementById("MyElement").classList.add('green');
+}
+else { }
 </script>
                     
 
