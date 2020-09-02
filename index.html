@@ -20,8 +20,8 @@ Duży lotek:
 $.getJSON('https://cors-anywhere.herokuapp.com/http://serwis.mobilotto.pl/mapi_v6/index.php?json=getGames', function(data){
 
 var myJSON = JSON.stringify(data);
-document.getElementById("dldl").innerHTML = JSON.stringify(data.Lotto.data_losowania, null, ' ');
- document.getElementById("dln").innerHTML = JSON.stringify(data.Lotto.numerki, null, ','); 
+document.getElementById("dldl").innerHTML = JSON.stringify(data.Lotto.data_losowania);
+   document.getElementById("dln").innerHTML = JSON.stringify(data.Lotto.numerki, ',', '/t'); 
     });
 </script>
 
