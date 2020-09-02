@@ -59,6 +59,12 @@ document.getElementById("ejn").innerHTML = JSON.stringify(data.EJ.numerki, ',', 
  
 
 document.getElementById("test").innerHTML = Date($.now());
+ 
+ $diff = strtotime('today 18:30') - strtotime(date('Y-m-d H:i'));
+if ($diff > 0) 
+    echo 'The shop is opening. Closed in ' . gmdate("H:i", $diff);
+else
+    echo 'The shop is closed. Please come back tomorrow.';
 </script>
 
 
