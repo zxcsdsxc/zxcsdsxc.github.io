@@ -10,12 +10,12 @@ body {
 </style>
 <body>
 <div>Duży lotek:
- <p id='dldl' class="Wednesday"></p>
+ <p id='dldl' class="Tuesday Thursday Saturday "></p>
  <p id='dln'></p>
  </div>
 
  <div> Mini lotek:
- <p id='mldl'></p>
+ <p id='mldl' class="Monday Tuesday Wednesday Thursday Friday Saturday Sunday"></p>
  <p id='mln'></p>
  </div>
 
@@ -28,7 +28,7 @@ body {
  </div>
 
  <div> Euro Jackpot:
- <p id='ejdl'></p>
+ <p id='ejdl' class="Friday"></p>
   <p id='ejn'></p>
   <p id='ejx'></p>
  </div>
@@ -55,7 +55,7 @@ document.getElementById("ejn").innerHTML = JSON.stringify(data.EJ.numerki, ',', 
 var day = (new Date()).getDay()-1;
 var daysOfTheWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
-$("." + daysOfTheWeek[day]).css("color", '#DB35B0');
+$("." + daysOfTheWeek[day]).css("color", 'green');
 
 </script>
                     
