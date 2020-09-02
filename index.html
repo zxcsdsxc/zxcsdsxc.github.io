@@ -20,10 +20,10 @@ body {
  </div>
 
  <div> Multi Multi:
- <p id='mm1dl'></p>
+ <p id='mm1dl' class="Monday Tuesday Wednesday Thursday Friday Saturday Sunday"></p>
  <p id='mm1n'></p>
  <p>
- <p id='mm2dl'></p>
+ <p id='mm2dl' class="Monday Tuesday Wednesday Thursday Friday Saturday Sunday"></p>
  <p id='mm2n'></p>
  </div>
 
@@ -53,9 +53,9 @@ document.getElementById("ejn").innerHTML = JSON.stringify(data.EJ.numerki, ',', 
     });
 
 var day = (new Date()).getDay()-1;
-var daysOfTheWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+var daysOfTheWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
-$("#" + daysOfTheWeek[day]).css("color", '#DB35B0');
+$("." + daysOfTheWeek[day]).css("color", '#DB35B0');
 
 </script>
                     
