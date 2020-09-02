@@ -1,6 +1,7 @@
 <html>
  <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="date.js"></script>
 </head>
  <style>
 body {
@@ -58,15 +59,9 @@ document.getElementById("ejn").innerHTML = JSON.stringify(data.EJ.numerki, ',', 
     });
  
 
-document.getElementById("test").innerHTML = Date($.now());
- 
- $diff = strtotime('today 18:30') - strtotime(date('Y-m-d H:i'));
-if ($diff > 0) 
-    echo 'The shop is opening. Closed in ' . gmdate("H:i", $diff);
-else
-    echo 'The shop is closed. Please come back tomorrow.';
+document.getElementById("test").innerHTML = Date.today()
 </script>
-
+                    
 
 
 </body>
