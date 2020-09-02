@@ -1,7 +1,7 @@
 <html>
  <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript" src="date.js"></script>
+<script type="textsdsd/javascript" src="date.js"></script>
 </head>
  <style>
 body {
@@ -48,6 +48,11 @@ $.getJSON('https://cors-anywhere.herokuapp.com/http://serwis.mobilotto.pl/mapi_v
  //var myJSON = przecinki.replace(/,/g, '<br>');
 //duzy lotek
 document.getElementById("dldl").innerHTML = JSON.stringify(data.Lotto.data_losowania);
+ if (JSON.stringify(data.MM1.data_losowania) < Date.today())
+{
+ document.getElementById("MyElement").classList.add('green');
+}
+else { }
 document.getElementById("dln").innerHTML = JSON.stringify(data.Lotto.numerki, ',', '\t').replace(/,/g, ' '); 
 // mini lotek
 document.getElementById("mldl").innerHTML = JSON.stringify(data.Mini.data_losowania);
@@ -64,11 +69,7 @@ document.getElementById("ejn").innerHTML = JSON.stringify(data.EJ.numerki, ',', 
     });
  
 
-if (JSON.stringify(data.MM1.data_losowania) < Date.today())
-{
- document.getElementById("MyElement").classList.add('green');
-}
-else { }
+
 </script>
                     
 
