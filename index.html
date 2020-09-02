@@ -58,7 +58,7 @@ document.getElementById("ejdl").innerHTML = JSON.stringify(data.EJ.data_losowani
 document.getElementById("ejn").innerHTML = JSON.stringify(data.EJ.numerki, ',', '\t').replace(/,/g, ' ');  
  document.getElementById("ejx").innerHTML = JSON.stringify(data.EJ.extra, ',', '\t').replace(/,/g, ' ');  
     });
- 
+ document.getElementById("test").innerHTML = Date.today()
  if (document.getElementById("dldl").innerHTML < Date.today())
 {
  document.getElementById("dldl").classList.add('green');
