@@ -1,22 +1,19 @@
 <html>
  <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="textsdsd/javascript" src="date.js"></script>
 </head>
  <style>
 body {
   color: white;
   background-color: black;
- 
- p.green {
-  color: green;
+ .today h3 {color: #DB35B0;}
 }
  
 }
 </style>
 <body>
 <div>Duży lotek:
- <p id='dldl'></p>
+ <p id='dldl' id="Wednesday"></p>
  <p id='dln'></p>
  </div>
 
@@ -38,7 +35,6 @@ body {
   <p id='ejn'></p>
   <p id='ejx'></p>
  </div>
- <p id='test'></p>
  
 <script>
 
@@ -58,14 +54,11 @@ document.getElementById("ejdl").innerHTML = JSON.stringify(data.EJ.data_losowani
 document.getElementById("ejn").innerHTML = JSON.stringify(data.EJ.numerki, ',', '\t').replace(/,/g, ' ');  
  document.getElementById("ejx").innerHTML = JSON.stringify(data.EJ.extra, ',', '\t').replace(/,/g, ' ');  
     });
- document.getElementById("test").innerHTML = Date.today()
- if (document.getElementById("dldl").innerHTML < Date.today())
-{
- document.getElementById("dldl").classList.add('green');
-}
-else { }
 
+ var day = (new Date()).getDay()-1;
+ var daysOfTheWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
+$("#" + daysOfTheWeek[day]).addClass("today");
 
 </script>
                     
