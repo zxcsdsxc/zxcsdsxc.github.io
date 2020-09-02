@@ -9,16 +9,8 @@
 //const obj = JSON.parse(json);
 //console.log(obj.Lotto);
 $.getJSON('https://cors-anywhere.herokuapp.com/http://serwis.mobilotto.pl/mapi_v6/index.php?json=getGames', function(data){
-  var items = [];
-  $.each( data, function( key, val ) {
-    items.push( "<li id='" + key + "'>" + val + "</li>" );
-  });
- 
-  $( "<ul/>", {
-    "class": "my-new-list",
-    html: items.join( "" )
-  }).appendTo( "body" );
-});
+  JSON.stringify(data);
+    });
 </script>
 
 </div>
