@@ -34,8 +34,20 @@
 $.getJSON('https://cors-anywhere.herokuapp.com/http://serwis.mobilotto.pl/mapi_v6/index.php?json=getGames', function(data){
 
 var myJSON = JSON.stringify(data);
+//duzy lotek
 document.getElementById("dldl").innerHTML = JSON.stringify(data.Lotto.data_losowania);
-   document.getElementById("dln").innerHTML = JSON.stringify(data.Lotto.numerki, ',', '/t'); 
+document.getElementById("dln").innerHTML = JSON.stringify(data.Lotto.numerki, ',', '\t'); 
+// mini lotek
+document.getElementById("mldl").innerHTML = JSON.stringify(data.Mini.data_losowania);
+document.getElementById("mln").innerHTML = JSON.stringify(data.Mini.numerki, ',', '\t'); 
+ // multi multi
+document.getElementById("mm1dl").innerHTML = JSON.stringify(data.MM1.data_losowania);
+document.getElementById("mm1n").innerHTML = JSON.stringify(data.MM1.numerki, ',', '\t'); 
+document.getElementById("mm2dl").innerHTML = JSON.stringify(data.MM2.data_losowania);
+document.getElementById("mm2n").innerHTML = JSON.stringify(data.MM2.numerki, ',', '\t'); 
+// euro jackpot
+document.getElementById("ejdl").innerHTML = JSON.stringify(data.EJ.data_losowania);
+document.getElementById("ejn").innerHTML = JSON.stringify(data.EJ.numerki, ',', '\t'); 
     });
 </script>
 
