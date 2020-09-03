@@ -36,6 +36,37 @@ body {
  </div>
  
 <script>
+ 
+
+$(function(){
+
+    $.get('https://cors-anywhere.herokuapp.com/https://app.lotto.pl/losowania/kumulacja.txt', function(data){
+
+        var array = data.split('    ');
+
+        console.log(array[0]);
+
+        document.getElementById("kumulacja").innerHTML += array[1] + " 000 000"
+
+    });
+
+});
+
+$(function(){
+
+    $.get('https://cors-anywhere.herokuapp.com/https://app.lotto.pl/losowania/pula.txt', function(data){
+
+        var array = data.split('    ');
+
+        console.log(array[1]);
+
+        document.getElementById("kumulacjajackpot").innerHTML += array[1] + " 000 000"
+
+    });
+
+});
+ 
+ 
 $.getJSON('https://cors-anywhere.herokuapp.com/http://serwis.mobilotto.pl/mapi_v6/index.php?json=getGames', function(data){
 document.getElementById("dldl").innerHTML = JSON.stringify(data.Lotto.data_losowania).replace(/"/g, ' '); 
 document.getElementById("dln").innerHTML = JSON.stringify(data.Lotto.numerki).replace(/,|"/g, ' '); 
@@ -59,20 +90,6 @@ var daysOfTheWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Sa
 $("." + daysOfTheWeek[day]).css("color", 'green');
 
 
-$(function(){
-    $.get('https://cors-anywhere.herokuapp.com/https://app.lotto.pl/losowania/kumulacja.txt', function(data){
-        var array = data.split('    ');
-        console.log(array[1]);
-        document.getElementById("kumulacja").innerHTML += array[1] + " 000 000"
-    });
-});
-$(function(){
-    $.get('https://cors-anywhere.herokuapp.com/https://app.lotto.pl/losowania/pula.txt', function(data){
-        var array = data.split('    ');
-        console.log(array[1]);
-        document.getElementById("kumulacjajackpot").innerHTML += array[1] + " 000 000"
-    });
-});
 
 </script>
                     
