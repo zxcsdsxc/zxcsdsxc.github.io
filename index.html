@@ -9,53 +9,70 @@ body {
 }
 </style>
 <body>
-<div>Duży lotek:
+<div>Duży lotek: 
+<p id='kumulacja'>Kumulacja wynosi: </p>
  <p id='dldl' class="Tuesday Thursday Saturday "></p>
- <p id='dln'></p>
+ <p id='dln'></p><p>.</p>
  </div>
 
  <div> Mini lotek:
  <p id='mldl' class="Monday Tuesday Wednesday Thursday Friday Saturday Sunday"></p>
- <p id='mln'></p>
+ <p id='mln'></p><p>.</p>
  </div>
 
  <div> Multi Multi:
  <p id='mm1dl' class="Monday Tuesday Wednesday Thursday Friday Saturday Sunday"></p>
- <p id='mm1n'></p>
+ <p id='mm1n'></p><p>.</p>
  <p>
  <p id='mm2dl' class="Monday Tuesday Wednesday Thursday Friday Saturday Sunday"></p>
- <p id='mm2n'></p>
+ <p id='mm2n'></p><p>.</p>
  </div>
 
  <div> Euro Jackpot:
+ <p id='kumulacjajackpot'>Kumulacja wynosi: </p>
  <p id='ejdl' class="Friday"></p>
   <p id='ejn'></p>
   <p id='ejx'></p>
  </div>
  
 <script>
-
 $.getJSON('https://cors-anywhere.herokuapp.com/http://serwis.mobilotto.pl/mapi_v6/index.php?json=getGames', function(data){
 document.getElementById("dldl").innerHTML = JSON.stringify(data.Lotto.data_losowania).replace(/"/g, ' '); 
-document.getElementById("dln").innerHTML = JSON.stringify(data.Lotto.numerki, ',', '\t').replace(/,|"/g, ' '); 
+document.getElementById("dln").innerHTML = JSON.stringify(data.Lotto.numerki).replace(/,|"/g, ' '); 
 // mini lotek
 document.getElementById("mldl").innerHTML = JSON.stringify(data.Mini.data_losowania).replace(/"/g, ' '); 
-document.getElementById("mln").innerHTML = JSON.stringify(data.Mini.numerki, ',', '\t').replace(/,|"/g, ' '); 
+document.getElementById("mln").innerHTML = JSON.stringify(data.Mini.numerki).replace(/,|"/g, ' '); 
  // multi multi
 document.getElementById("mm1dl").innerHTML = JSON.stringify(data.MM1.data_losowania).replace(/"/g, ' '); 
-document.getElementById("mm1n").innerHTML = JSON.stringify(data.MM1.numerki, ',', '\t').replace(/,|"/g, ' '); 
+document.getElementById("mm1n").innerHTML = JSON.stringify(data.MM1.numerki).replace(/,|"/g, ' '); 
 document.getElementById("mm2dl").innerHTML = JSON.stringify(data.MM2.data_losowania).replace(/"/g, ' '); 
-document.getElementById("mm2n").innerHTML = JSON.stringify(data.MM2.numerki, ',', '\t').replace(/,|"/g, ' '); 
+document.getElementById("mm2n").innerHTML = JSON.stringify(data.MM2.numerki).replace(/,|"/g, ' '); 
 // euro jackpot
 document.getElementById("ejdl").innerHTML = JSON.stringify(data.EJ.data_losowania).replace(/"/g, ' '); 
-document.getElementById("ejn").innerHTML = JSON.stringify(data.EJ.numerki, ',', '\t').replace(/,|"/g, ' '); 
- document.getElementById("ejx").innerHTML = JSON.stringify(data.EJ.extra, ',', '\t').replace(/,|"/g, ' '); 
+document.getElementById("ejn").innerHTML = JSON.stringify(data.EJ.numerki).replace(/,|"/g, ' '); 
+ document.getElementById("ejx").innerHTML = JSON.stringify(data.EJ.extra).replace(/,|"/g, ' '); 
     });
 
 var day = (new Date()).getDay()-2;
 var daysOfTheWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
 $("." + daysOfTheWeek[day]).css("color", 'green');
+
+
+$(function(){
+    $.get('https://cors-anywhere.herokuapp.com/https://app.lotto.pl/losowania/kumulacja.txt', function(data){
+        var array = data.split('    ');
+        console.log(array[1]);
+        document.getElementById("kumulacja").innerHTML += array[1] + " 000 000"
+    });
+});
+$(function(){
+    $.get('https://cors-anywhere.herokuapp.com/https://app.lotto.pl/losowania/pula.txt', function(data){
+        var array = data.split('    ');
+        console.log(array[1]);
+        document.getElementById("kumulacjajackpot").innerHTML += array[1] + " 000 000"
+    });
+});
 
 </script>
                     
