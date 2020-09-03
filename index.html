@@ -42,11 +42,11 @@ $(function(){
 
     $.get('https://cors-anywhere.herokuapp.com/https://app.lotto.pl/losowania/kumulacja.txt', function(data){
 
-        var array = data.split(' ');
+        var array = data.split('\t');
 
         console.log(array);
 
-        document.getElementById("kumulacja").innerHTML += array[0] + " 000 000"
+         document.getElementById("kumulacja").innerHTML += array[1] + " 000 000"
 
     });
 
@@ -56,7 +56,7 @@ $(function(){
 
     $.get('https://cors-anywhere.herokuapp.com/https://app.lotto.pl/losowania/pula.txt', function(data){
 
-        var array = data.split('    ');
+        var array = data.split('\t');
 
         console.log(array[1]);
 
