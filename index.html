@@ -42,11 +42,11 @@ $(function(){
 
     $.get('https://cors-anywhere.herokuapp.com/https://app.lotto.pl/losowania/kumulacja.txt', function(data){
 
-        var array = data.split('    ');
+        var array = data.split(' ');
 
-        console.log(array[0]);
+        console.log(array);
 
-        document.getElementById("kumulacja").innerHTML += array[1] + " 000 000"
+        document.getElementById("kumulacja").innerHTML += array[0] + " 000 000"
 
     });
 
