@@ -12,7 +12,8 @@ body {
 <div>Duży lotek: 
 <p id='kumulacja'>Kumulacja wynosi: </p>
  <p id='dldl' class="Tuesday Thursday Saturday "></p>
- <p id='dln'></p><p>.</p>
+ <p id='dln'></p>
+<p id='dlpn'><p>.</p>
  </div>
 
  <div> Mini lotek:
@@ -70,6 +71,7 @@ $(function(){
 $.getJSON('https://cors-anywhere.herokuapp.com/http://serwis.mobilotto.pl/mapi_v6/index.php?json=getGames', function(data){
 document.getElementById("dldl").innerHTML = JSON.stringify(data.Lotto.data_losowania).replace(/"/g, ' '); 
 document.getElementById("dln").innerHTML = JSON.stringify(data.Lotto.numerki).replace(/,|"/g, ' '); 
+ document.getElementById("dln").innerHTML = JSON.stringify(data.LottoPlus.numerki).replace(/,|"/g, ' '); 
 // mini lotek
 document.getElementById("mldl").innerHTML = JSON.stringify(data.Mini.data_losowania).replace(/"/g, ' '); 
 document.getElementById("mln").innerHTML = JSON.stringify(data.Mini.numerki).replace(/,|"/g, ' '); 
