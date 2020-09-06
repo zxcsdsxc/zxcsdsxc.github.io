@@ -87,8 +87,7 @@ document.getElementById("ejn").innerHTML = JSON.stringify(data.EJ.numerki).repla
     });
 
 var day = (new Date()).getDay()-2;
-var daysOfTheWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-
+var daysOfTheWeek = ["Saturday","Sunday","Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 $("." + daysOfTheWeek[day]).css("color", 'green');
 
 
