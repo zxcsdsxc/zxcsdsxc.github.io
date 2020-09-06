@@ -86,7 +86,7 @@ document.getElementById("ejn").innerHTML = JSON.stringify(data.EJ.numerki).repla
  document.getElementById("ejx").innerHTML = JSON.stringify(data.EJ.extra).replace(/,|"/g, ' '); 
     });
 
-var day = (new Date()).getDay()-2;
+var day = (new Date()).getDay();
 var daysOfTheWeek = ["Saturday","Sunday","Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 $("." + daysOfTheWeek[day]).css("color", 'green');
 
