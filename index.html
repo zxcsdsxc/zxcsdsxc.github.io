@@ -42,7 +42,7 @@ body {
 
 $(function(){
 
-    $.get('https://wandering-fog-2d8b.zxcsdsxc.workers.dev/?https://app.lotto.pl/losowania/kumulacja.txt', function(data){
+    $.get('https://wandering-fog-2d8b.zxcsdsxc.workers.dev/corsproxy/?apiurl=https://app.lotto.pl/losowania/kumulacja.txt', function(data){
 
         var array = data.split('\t');
 
@@ -56,7 +56,7 @@ $(function(){
 
 $(function(){
 
-    $.get('https://wandering-fog-2d8b.zxcsdsxc.workers.dev/?https://app.lotto.pl/losowania/pula.txt', function(data){
+    $.get('https://wandering-fog-2d8b.zxcsdsxc.workers.dev/corsproxy/?apiurl=https://app.lotto.pl/losowania/pula.txt', function(data){
 
         var array = data.split('\t');
 
@@ -69,7 +69,7 @@ $(function(){
 });
  
  
-$.getJSON('https://wandering-fog-2d8b.zxcsdsxc.workers.dev/?http://serwis.mobilotto.pl/mapi_v6/index.php?json=getGames', function(data){
+$.getJSON('https://wandering-fog-2d8b.zxcsdsxc.workers.dev/corsproxy/?apiurl=http://serwis.mobilotto.pl/mapi_v6/index.php?json=getGames', function(data){
 document.getElementById("dldl").innerHTML = JSON.stringify(data.Lotto.data_losowania).replace(/"/g, ' '); 
 document.getElementById("dln").innerHTML = JSON.stringify(data.Lotto.numerki).replace(/,|"/g, ' '); 
  document.getElementById("dlpn").innerHTML = JSON.stringify(data.LottoPlus.numerki).replace(/,|"/g, ' '); 
