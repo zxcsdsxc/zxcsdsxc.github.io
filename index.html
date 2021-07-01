@@ -1,101 +1,95 @@
 <html>
- <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<head>
+<meta charset="UTF-8" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
- <style>
-body {
-  color: white;
-  background-color: black;
-}
+<style>
+  body {
+    color: white;
+    background-color: black;
+  }
 </style>
+
 <body>
+  <div>Multi Multi:
+    <p id='MM1dl'></p>
+    <p id='MM1n'></p>
+    <p>
+    <p id='MM2dl'></p>
+    <p id='MM2n'></p>
+    <br>
+  </div>
 
-<div>Duży lotek: 
-<p id='kumulacja'>Kumulacja wynosi: </p>
- <p id='dldl' class="Tuesday Thursday Saturday "></p>
- <p id='dln'></p>
-<p id='dlpn'><p>.</p>
- </div>
+  <div> Mini lotek:
+    <p id='Minidl'></p>
+    <p id='Minin'></p>
+    <br>
+  </div>
 
- <div> Mini lotek:
- <p id='mldl' class="Monday Tuesday Wednesday Thursday Friday Saturday Sunday"></p>
- <p id='mln'></p><p>.</p>
- </div>
+  <div class="DuzyLotekClass">Duży lotek:
+    <p id='kumulacja'>Kumulacja wynosi: </p>
+    <p id='Lottodl'></p>
+    <p id='Lotton'></p>
+    <p id='Lottop'></p>
+    <br>
+  </div>
 
- <div> Multi Multi:
- <p id='mm1dl' class="Monday Tuesday Wednesday Thursday Friday Saturday Sunday"></p>
- <p id='mm1n'></p><p>.</p>
- <p>
- <p id='mm2dl' class="Monday Tuesday Wednesday Thursday Friday Saturday Sunday"></p>
- <p id='mm2n'></p><p>.</p>
- </div>
+  <div id='EuroJackpot' class="EuroJackpotClass"> Euro Jackpot:
+    <p id='kumulacjajackpot'>Kumulacja wynosi: </p>
+    <p id='EJdl'></p>
+    <p id='EJn'></p>
+    <p id='EJx'></p>
+  </div>
 
- <div> Euro Jackpot:
- <p id='kumulacjajackpot'>Kumulacja wynosi: </p>
- <p id='ejdl' class="Friday"></p>
-  <p id='ejn'></p>
-  <p id='ejx'></p>
- </div>
- 
-<script>
- 
+  <script>
+    //current day
+    var options = {
+      weekday: 'long'
+    };
+    var day = Intl.DateTimeFormat('en-US', options).format(new Date());
 
-$(function(){
-
-    $.get('https://wandering-fog-2d8b.zxcsdsxc.workers.dev/corsproxy/?apiurl=https://app.lotto.pl/losowania/kumulacja.txt', function(data){
-
-        var array = data.split('\t');
-
-        //console.log(array);
-
-         document.getElementById("kumulacja").innerHTML += array[1] + " 000 000"
-
+    //kumulacjalotto
+    $.get('https://wandering-fog-2d8b.zxcsdsxc.workers.dev/corsproxy/?apiurl=https://app.lotto.pl/losowania/kumulacja.txt', function(data) {
+      var array = data.split('\t');
+      document.getElementById("kumulacja").innerHTML += array[1] + " 000 000"
     });
 
-});
-
-$(function(){
-
-    $.get('https://wandering-fog-2d8b.zxcsdsxc.workers.dev/corsproxy/?apiurl=https://app.lotto.pl/losowania/pula.txt', function(data){
-
-        var array = data.split('\t');
-
-       // console.log(array[1]);
-
-        document.getElementById("kumulacjajackpot").innerHTML += array[1] + " 000 000"
-
+    //kumulacjajackpot
+    $.get('https://wandering-fog-2d8b.zxcsdsxc.workers.dev/corsproxy/?apiurl=https://app.lotto.pl/losowania/pula.txt', function(data) {
+      var array = data.split('\t');
+      document.getElementById("kumulacjajackpot").innerHTML += array[1] + " 000 000"
     });
 
-});
- 
- 
-$.getJSON('https://wandering-fog-2d8b.zxcsdsxc.workers.dev/corsproxy/?apiurl=http://serwis.mobilotto.pl/mapi_v6/index.php?json=getGames', function(data){
-document.getElementById("dldl").innerHTML = JSON.stringify(data.Lotto.data_losowania).replace(/"/g, ' '); 
-document.getElementById("dln").innerHTML = JSON.stringify(data.Lotto.numerki).replace(/,|"/g, ' '); 
- document.getElementById("dlpn").innerHTML = JSON.stringify(data.LottoPlus.numerki).replace(/,|"/g, ' '); 
-// mini lotek
-document.getElementById("mldl").innerHTML = JSON.stringify(data.Mini.data_losowania).replace(/"/g, ' '); 
-document.getElementById("mln").innerHTML = JSON.stringify(data.Mini.numerki).replace(/,|"/g, ' '); 
- // multi multi
-document.getElementById("mm1dl").innerHTML = JSON.stringify(data.MM1.data_losowania).replace(/"/g, ' '); 
-document.getElementById("mm1n").innerHTML = JSON.stringify(data.MM1.numerki).replace(/,|"/g, ' '); 
-document.getElementById("mm2dl").innerHTML = JSON.stringify(data.MM2.data_losowania).replace(/"/g, ' '); 
-document.getElementById("mm2n").innerHTML = JSON.stringify(data.MM2.numerki).replace(/,|"/g, ' '); 
-// euro jackpot
-document.getElementById("ejdl").innerHTML = JSON.stringify(data.EJ.data_losowania).replace(/"/g, ' '); 
-document.getElementById("ejn").innerHTML = JSON.stringify(data.EJ.numerki).replace(/,|"/g, ' '); 
- document.getElementById("ejx").innerHTML = JSON.stringify(data.EJ.extra).replace(/,|"/g, ' '); 
+    //funkcja losowania (data+numery)
+    function wyniki(losowanko) {
+      //console.log(losowanko + "dl");
+      document.getElementById(losowanko + "dl").innerHTML = JSON.stringify(WynikiLosowania[losowanko].data_losowania).replace(/"/g, ' ');
+      document.getElementById(losowanko + 'n').innerHTML = JSON.stringify(WynikiLosowania[losowanko].numerki).replace(/,|"/g, ' ');
+    };
+
+    //getjson wyniki
+
+    $.getJSON('https://wandering-fog-2d8b.zxcsdsxc.workers.dev/corsproxy/?apiurl=http://serwis.mobilotto.pl/mapi_v6/index.php?json=getGames', function(data) {
+      WynikiLosowania = data;
+      wyniki('Lotto');
+      document.getElementById("Lottop").innerHTML = JSON.stringify(data.LottoPlus.numerki).replace(/,|"/g, ' ');
+      wyniki('Mini'); //all
+      wyniki('MM1'); //all
+      wyniki('MM2'); //all
+	  wyniki('EJ');
+	  document.getElementById("EJx").innerHTML = JSON.stringify(data.EJ.extra).replace(/,|"/g, ' ');
     });
 
-var day = (new Date()).getDay();
-var daysOfTheWeek = ["Saturday","Sunday","Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
-$("." + daysOfTheWeek[day]).css("color", 'green');
+    //gray if wrong day
+    if (day !== 'Saturday') {
+      $('.EuroJackpotClass').css("color", 'gray');
+    }
 
+    if (day !== 'Wednesday' && day !== 'Friday' && day !== 'Sunday') {
+      $('.DuzyLotekClass').css("color", 'gray');
+    }
 
-
-</script>
-                    
-
-
+    console.log(day);
+  </script>
 </body>
 </html>
