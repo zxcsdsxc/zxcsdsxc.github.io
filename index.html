@@ -12,17 +12,17 @@
 
 <body>
   <div>Multi Multi:
-    <p id='MM1dl'></p>
-    <p id='MM1n'></p>
+    <p id='MultiMultidl'></p>
+    <p id='MultiMultin'></p>
     <p>
-    <p id='MM2dl'></p>
-    <p id='MM2n'></p>
+    <p id='MultiMulti2dl'></p>
+    <p id='MultiMulti2n'></p>
     <br>
   </div>
 
   <div> Mini lotek:
-    <p id='Minidl'></p>
-    <p id='Minin'></p>
+    <p id='MiniLottodl'></p>
+    <p id='MiniLotton'></p>
     <br>
   </div>
 
@@ -36,24 +36,17 @@
 
   <div id='EuroJackpot' class="EuroJackpotClass"> Euro Jackpot:
     <p id='kumulacjajackpot'>Kumulacja wynosi: </p>
-    <p id='EJdl'></p>
-    <p id='EJn'></p>
-    <p id='EJx'></p>
+    <p id='EuroJackpotdl'></p>
+    <p id='EuroJackpotn'></p>
+    <p id='EuroJackpotx'></p>
   </div>
 
   <script>
-    //current day
-    var options = {
-      weekday: 'long'
-    };
-    var day = Intl.DateTimeFormat('en-US', options).format(new Date());
-
     //kumulacjalotto
     $.get('https://wandering-fog-2d8b.zxcsdsxc.workers.dev/corsproxy/?apiurl=https://app.lotto.pl/losowania/kumulacja.txt', function(data) {
       var array = data.split('\t');
       document.getElementById("kumulacja").innerHTML += array[1] + " 000 000"
     });
-
     //kumulacjajackpot
     $.get('https://wandering-fog-2d8b.zxcsdsxc.workers.dev/corsproxy/?apiurl=https://app.lotto.pl/losowania/pula.txt', function(data) {
       var array = data.split('\t');
@@ -62,23 +55,37 @@
 
     //funkcja losowania (data+numery)
     function wyniki(losowanko) {
-      //console.log(losowanko + "dl");
-      document.getElementById(losowanko + "dl").innerHTML = JSON.stringify(WynikiLosowania[losowanko].data_losowania).replace(/"/g, ' ');
-      document.getElementById(losowanko + 'n').innerHTML = JSON.stringify(WynikiLosowania[losowanko].numerki).replace(/,|"/g, ' ');
+      if (losowanko === 'MultiMulti2') {
+        zmienna = 'MultiMulti%26index=2'       
+      } else {
+        zmienna = losowanko+'%26index=1'
+      }
+  
+      $.getJSON('https://wandering-fog-2d8b.zxcsdsxc.workers.dev/corsproxy/?apiurl=https://www.lotto.pl/api/lotteries/draw-results/by-gametype?game='+zmienna+'%26size=1%26sort=drawDate%26order=DESC', function(data) {
+        WynikiLosowania = (data.items[0].results[0].resultsJson).join(' ');
+        document.getElementById(losowanko + 'n').innerHTML = WynikiLosowania
+
+        DataLosowania = (data.items[0].results[0].drawDate).slice(0,10)
+        document.getElementById(losowanko + 'dl').innerHTML = DataLosowania
+
+        if (losowanko === "EuroJackpot") {      
+        WynikiLosowania = (data.items[0].results[0].specialResults).join(' ');
+        document.getElementById(losowanko + 'x').innerHTML = WynikiLosowania
+        }
+      });
     };
 
-    //getjson wyniki
+  wyniki('Lotto')
+  wyniki('MiniLotto')
+  wyniki('MultiMulti')
+  wyniki('MultiMulti2')
+  wyniki('EuroJackpot');
 
-    $.getJSON('https://wandering-fog-2d8b.zxcsdsxc.workers.dev/corsproxy/?apiurl=http://serwis.mobilotto.pl/mapi_v6/index.php?json=getGames', function(data) {
-      WynikiLosowania = data;
-      wyniki('Lotto');
-      document.getElementById("Lottop").innerHTML = JSON.stringify(data.LottoPlus.numerki).replace(/,|"/g, ' ');
-      wyniki('Mini'); //all
-      wyniki('MM1'); //all
-      wyniki('MM2'); //all
-	  wyniki('EJ');
-	  document.getElementById("EJx").innerHTML = JSON.stringify(data.EJ.extra).replace(/,|"/g, ' ');
-    });
+    //current day
+    var options = {
+      weekday: 'long'
+    };
+    var day = Intl.DateTimeFormat('en-US', options).format(new Date());
 
     //gray if wrong day
     if (day !== 'Saturday') {
@@ -88,8 +95,6 @@
     if (day !== 'Wednesday' && day !== 'Friday' && day !== 'Sunday') {
       $('.DuzyLotekClass').css("color", 'gray');
     }
-
-    console.log(day);
   </script>
 </body>
 </html>
