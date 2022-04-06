@@ -29,8 +29,8 @@
   <div class="DuzyLotekClass">Duży lotek:
     <p id='kumulacja'>Kumulacja wynosi: </p>
     <p id='Lottodl'></p>
-    <p id='Lottodl2'></p>
     <p id='Lotton'></p>
+    <p id='Lotton2'></p>
     <p id='Lottop'></p>
     <br>
   </div>
@@ -76,7 +76,7 @@
 
         if (losowanko === "Lotto") {      
         WynikiLosowania = (data.items[0].results[1].resultsJson).join(' ');
-        document.getElementById('Lottodl2').innerHTML = WynikiLosowania
+        document.getElementById('Lotton2').innerHTML = WynikiLosowania
         }
       });
     };
