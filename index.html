@@ -95,8 +95,8 @@
         });
 
         $.getJSON(EuroJackpotURL, function (data) {
-            $('#EuroJackpotdl').text(data.result.td[65]);
-            var EuroJackpotNumbers = data.result.td[66].split(' ');
+            $('#EuroJackpotdl').text(data.result.td[68]);
+            var EuroJackpotNumbers = data.result.td[69].split(' ');
             var EuroJackpotNumbersX = EuroJackpotNumbers.pop();
             var EuroJackpotNumbersX = '<span style="color: aqua;"> ' + EuroJackpotNumbersX.slice(0, 2) + " " + EuroJackpotNumbersX.slice(2); + '</span>';
             $('#EuroJackpotn').html(EuroJackpotNumbers.join(' ') + EuroJackpotNumbersX);
