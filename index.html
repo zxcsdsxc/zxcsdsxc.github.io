@@ -45,6 +45,15 @@
             <p>--------------------------------------------------------------------------</p>
         </section>
     </main>
+
+
+
+
+
+
+
+
+
     <script>
         $.get('https://wandering-fog-2d8b.zxcsdsxc.workers.dev/corsproxy/?apiurl=https://app.lotto.pl/losowania/kumulacja.txt', function (data) {
             var array = data.split('\t');
@@ -76,27 +85,27 @@
                 $(selector + 'n').html(finalOutput);
             }
 
-            processMultiMulti('#MultiMulti', 65);
-            processMultiMulti('#MultiMulti2', 67);
+            processMultiMulti('#MultiMulti', 77);
+            processMultiMulti('#MultiMulti2', 79);
         });
 
         $.getJSON(MiniLottoURL, function (data) {
-            $('#MiniLottodl').text(data.result.td[65]);
-            var formattedString = data.result.td[66].replace(/(.)(?=(.{2})+$)/g, '$1 ');
+            $('#MiniLottodl').text(data.result.td[77]);
+            var formattedString = data.result.td[78].replace(/(.)(?=(.{2})+$)/g, '$1 ');
             $('#MiniLotton').text(formattedString);
         });
 
         $.getJSON(DuzyLotekURL, function (data) {
-            var cleanedString = data.result.td[65].replace(/[^0-9.]/g, '');
+            var cleanedString = data.result.td[77].replace(/[^0-9.]/g, '');
             $('#Lottodl').text(cleanedString);
-            var DuzyLotekNumbers = data.result.td[66].split(' ');
+            var DuzyLotekNumbers = data.result.td[78].split(' ');
             $('#Lotton').text(DuzyLotekNumbers.slice(0, 6).join(' '));
             $('#Lotton2').text(DuzyLotekNumbers.slice(6).join(' '));
         });
 
         $.getJSON(EuroJackpotURL, function (data) {
-            $('#EuroJackpotdl').text(data.result.td[68]);
-            var EuroJackpotNumbers = data.result.td[69].split(' ');
+            $('#EuroJackpotdl').text(data.result.td[80]);
+            var EuroJackpotNumbers = data.result.td[81].split(' ');
             var EuroJackpotNumbersX = EuroJackpotNumbers.pop();
             var EuroJackpotNumbersX = '<span style="color: aqua;"> ' + EuroJackpotNumbersX.slice(0, 2) + " " + EuroJackpotNumbersX.slice(2); + '</span>';
             $('#EuroJackpotn').html(EuroJackpotNumbers.join(' ') + EuroJackpotNumbersX);
