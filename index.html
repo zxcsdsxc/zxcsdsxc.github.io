@@ -59,24 +59,20 @@
             var array = data.split('\t');
             document.getElementById("kumulacja").innerHTML += array[1] + " 000 000";
         });
-
         $.get('https://wandering-fog-2d8b.zxcsdsxc.workers.dev/corsproxy/?apiurl=https://app.lotto.pl/losowania/pula.txt', function (data) {
             var array = data.split('\t');
             document.getElementById("kumulacjajackpot").innerHTML += array[1] + " 000 000";
         });
-
         const MultiMultiURL = 'https://web.scraper.workers.dev/?url=https://www.multipasko.pl/wyniki-lotto/multi-lotek/niesortowane/&selector=td';
         const MiniLottoURL = 'https://web.scraper.workers.dev/?url=https://www.multipasko.pl/wyniki-lotto/express-lotek/niesortowane/&selector=td';
         const DuzyLotekURL = 'https://web.scraper.workers.dev/?url=https://www.multipasko.pl/wyniki-lotto/duzy-lotek/niesortowane/&selector=td';
         const EuroJackpotURL = 'https://web.scraper.workers.dev/?url=https://www.multipasko.pl/wyniki-lotto/eurojackpot/niesortowane/&selector=td';
-
         $.getJSON(MultiMultiURL, function (data) {
             function processMultiMulti(selector, index) {
                 var MultiMulti = data.result.td[index];
                 MultiMulti = MultiMulti.replace(/(14:00|22:00)/g, '$1 ');
                 MultiMulti = MultiMulti.split(' ');
                 $(selector + 'dl').text(MultiMulti[0] + " " + MultiMulti[1]);
-
                 var numbersArray = MultiMulti[2].split(',');
                 var lastNumber = numbersArray.pop();
                 var stringWithSpaces = numbersArray.join(' ');
@@ -85,46 +81,41 @@
                 $(selector + 'n').html(finalOutput);
             }
 
-            processMultiMulti('#MultiMulti', 77);
-            processMultiMulti('#MultiMulti2', 79);
+            processMultiMulti('#MultiMulti', 65);
+            processMultiMulti('#MultiMulti2', 67);
         });
 
         $.getJSON(MiniLottoURL, function (data) {
-            $('#MiniLottodl').text(data.result.td[77]);
-            var formattedString = data.result.td[78].replace(/(.)(?=(.{2})+$)/g, '$1 ');
+            $('#MiniLottodl').text(data.result.td[65]);
+            var formattedString = data.result.td[66].replace(/(.)(?=(.{2})+$)/g, '$1 ');
             $('#MiniLotton').text(formattedString);
         });
 
         $.getJSON(DuzyLotekURL, function (data) {
-            var cleanedString = data.result.td[77].replace(/[^0-9.]/g, '');
+            var cleanedString = data.result.td[65].replace(/[^0-9.]/g, '');
             $('#Lottodl').text(cleanedString);
-            var DuzyLotekNumbers = data.result.td[78].split(' ');
+            var DuzyLotekNumbers = data.result.td[66].split(' ');
             $('#Lotton').text(DuzyLotekNumbers.slice(0, 6).join(' '));
             $('#Lotton2').text(DuzyLotekNumbers.slice(6).join(' '));
         });
 
         $.getJSON(EuroJackpotURL, function (data) {
-            $('#EuroJackpotdl').text(data.result.td[80]);
-            var EuroJackpotNumbers = data.result.td[81].split(' ');
+            $('#EuroJackpotdl').text(data.result.td[68]);
+            var EuroJackpotNumbers = data.result.td[69].split(' ');
             var EuroJackpotNumbersX = EuroJackpotNumbers.pop();
             var EuroJackpotNumbersX = '<span style="color: aqua;"> ' + EuroJackpotNumbersX.slice(0, 2) + " " + EuroJackpotNumbersX.slice(2); + '</span>';
             $('#EuroJackpotn').html(EuroJackpotNumbers.join(' ') + EuroJackpotNumbersX);
         });
-
         var options = {
             weekday: 'long'
         };
         var day = Intl.DateTimeFormat('en-US', options).format(new Date());
-
         if (day !== 'Saturday') {
             $('.EuroJackpotClass').css("color", 'gray');
         }
-
         if (day !== 'Wednesday' && day !== 'Friday' && day !== 'Sunday') {
             $('.DuzyLotekClass').css("color", 'gray');
         }
-
-
     </script>
 </body>
 
